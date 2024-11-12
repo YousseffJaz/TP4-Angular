@@ -1,0 +1,32 @@
+<!-- Formulaire pour ajouter ou modifier un employé -->
+<form (ngSubmit)="currentEmployee ? onEditEmployeeSubmit() : onAddEmployee()">
+  <label for="name">Nom</label>
+  <input id="name" [(ngModel)]="employeeData.name" name="name" required>
+
+  <label for="status">Statut</label>
+  <input id="status" [(ngModel)]="employeeData.status" name="status" required>
+
+  <button type="submit">{{ currentEmployee ? 'Modifier' : 'Ajouter' }} l'employé</button>
+</form>
+<!-- Tableau des employés -->
+<table border="1" style="height: 300px;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.status }}</td>
+      <td>
+        <button (click)="onEditEmployee(employee)">Modifier</button>
+        <button (click)="onDeleteEmployee(employee)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
